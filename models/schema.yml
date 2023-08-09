@@ -1,0 +1,35 @@
+version: 2
+
+models:
+
+    - name: sales
+      description: name of the table
+      tests:
+        - unique:
+            column_name: "(orders_id || '-' || products_id)"
+            
+      columns:
+          - name: orders_id
+            description: primary_key of the view sales in big query
+            tests : 
+            - not_null 
+
+          - name: products_id
+            description: id of the products based on the sales
+            tests:
+              - not_null
+
+          - name: qty
+            description: quantity of products that was saled in the order_id
+
+          - name: turnover
+            description: revenue of each sale
+            tests:
+              - not_null
+
+          - name: purchase_cost
+            description: the coast number of the sale that is important to calculate the margin
+            tests:
+              - not_null
+              
+          - name: margin
